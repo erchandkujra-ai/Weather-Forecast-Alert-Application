@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+httpx
+pydantic
+pandas
+matplotlib
+streamlit
+python-dotenv

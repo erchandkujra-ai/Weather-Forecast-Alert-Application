@@ -1,0 +1,29 @@
+
+for index in range(forecast_days):
+
+    date = daily["time"][index]
+    day = get_day_name(date)
+
+    maximum = daily["temperature_2m_max"][index]
+    minimum = daily["temperature_2m_min"][index]
+
+    daily_codes = daily.get("weather_code", [])
+    code = daily_codes[index] if index < len(daily_codes) else 1
+
+    forecast_description, forecast_icon = weather_description(code)
+
+    forecast_card = f"""
+<div class="forecast-card">
+    <div class="forecast-day">{day}</div>
+    <div class="forecast-icon">{forecast_icon}</div>
+    <div class="forecast-max">{maximum} °C</div>
+    <div class="forecast-min">{minimum} °C</div>
+</div>
+"""
+
+    with columns[index]:
+        components.html(
+            forecast_card,
+            height=205,
+            scrolling=False
+        )
